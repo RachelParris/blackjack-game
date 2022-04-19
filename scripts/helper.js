@@ -17,6 +17,18 @@ function buildDeck () {
         }
     }
 
-    console.log(deck);
     return deck;
+}
+
+function removeCardFromDeck (deck) {
+    // Pick a random number between 0 - 52 then remove that particular card from the deck
+    let number = Math.floor(Math.random() * deck.length);
+    let card = deck.splice(number, 1);
+
+    return card;
+}
+
+function getCardImage () {
+    // images/{rank}_of_{suit}.png
+    // <img src="/page/images/5_of_hearts.png" alt="5 of hearts" />
 }

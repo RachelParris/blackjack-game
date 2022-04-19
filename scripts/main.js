@@ -7,7 +7,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // DEAL
   document.getElementById("deal-button").addEventListener("click", function () {
-    console.log("It works");
+    let card = removeCardFromDeck(deck);
+
+    // The DEALER and PLAYER should each get 2 cards
+    playerHand.push(card);
+    dealerHand.push(card);
+    playerHand.push(card);
+    dealerHand.push(card);
+    console.log(playerHand);
+    console.log(dealerHand);
   });
 
   // HIT
