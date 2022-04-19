@@ -2,34 +2,36 @@ window.addEventListener('DOMContentLoaded', function() {
   // Execute after page load
 
   let deck = buildDeck();
-  let dealerHand = [];
-  let playerHand = [];
-  let dealerId = document.getElementById("dealer-hand");
-  let playerId = document.getElementById("player-hand");
+  let dealer = {
+    name: "dealer",
+    hand: [],
+    points: 0
+  }
+  let player = {
+    name: "player",
+    hand: [],
+    points: 0
+  }
 
   // DEAL
   document.getElementById("deal-button").addEventListener("click", function () {
+    // Use the shuffle function to shuffle the deck when you hit the deal button but before you deal the cards.
+    // let shuffledDeck = shuffleDeck(deck);
 
     // The DEALER and PLAYER should each get 2 cards
-    playerHand.push(removeCardFromDeck(deck));
-    dealerHand.push(removeCardFromDeck(deck));
-    playerHand.push(removeCardFromDeck(deck));
-    dealerHand.push(removeCardFromDeck(deck));
+    player.hand.push(removeCardFromDeck(deck));
+    dealer.hand.push(removeCardFromDeck(deck));
+    player.hand.push(removeCardFromDeck(deck));
+    dealer.hand.push(removeCardFromDeck(deck));
 
-    for (let i=0; i < dealerHand.length; i++) {
-      let cardImage = getCardImage(dealerHand[i]);
-      dealerId.appendChild(cardImage);
-    }
-
-    for (let i=0; i < playerHand.length; i++) {
-      let cardImage = getCardImage(playerHand[i]);
-      playerId.appendChild(cardImage);
-    }
+    renderHand(dealer.hand, dealer.name);
+    renderHand(player.hand, player.name);
   });
 
   // HIT
   document.getElementById("hit-button").addEventListener("click", function () {
-    console.log("It works");
+    player.hand.push(removeCardFromDeck(deck));
+    renderHand(player.hand, player.name);
   });
   
   // STAND
