@@ -26,16 +26,32 @@ window.addEventListener('DOMContentLoaded', function() {
 
     renderHand(dealer.hand, dealer.name);
     renderHand(player.hand, player.name);
+
+    displayPoints(dealer);
+    displayPoints(player);
   });
 
   // HIT
   document.getElementById("hit-button").addEventListener("click", function () {
+    // PLAYER gets another card
     player.hand.push(removeCardFromDeck(deck));
     renderHand(player.hand, player.name);
+
+    // Calculate and display points
+    player.points = calculatePoints(player.hand);
+    dealer.points = calculatePoints(dealer.hand);
+
+    displayPoints(dealer);
+    displayPoints(player);
   });
   
   // STAND
   document.getElementById("stand-button").addEventListener("click", function () {
-    console.log("It works");
+    // Calculate and display points
+    player.points = calculatePoints(player.hand);
+    dealer.points = calculatePoints(dealer.hand);
+
+    displayPoints(dealer);
+    displayPoints(player);
   });
 });

@@ -74,3 +74,27 @@ function renderHand (hand, id) {
         document.getElementById(`${id}-hand`).appendChild(cardImage);
     }
 }
+
+function calculatePoints (cards) {
+    // takes in an array of card objects and returns the points for that hand
+    let points = 0;
+    
+    for (let i=0; i < cards.length; i++) {
+        if (cards[i].rank > 10 ){
+            // Jokers, Kings, Queens (11-13) are 10 points each
+            points = points + 10;
+            continue;
+        }
+        points = points + cards[i].rank;
+    }
+    console.log(points);
+    return points
+}
+
+function displayPoints (player) {
+    // <span id="player-points" class="points"></span>
+    let points = player.points;
+    let id = player.name;
+
+    document.getElementById(`${id}-points`).innerHTML = `${player.points}`;
+}
