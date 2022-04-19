@@ -16,7 +16,7 @@ function buildDeck () {
             }
         }
     }
-
+    
     return deck;
 }
 
@@ -25,10 +25,31 @@ function removeCardFromDeck (deck) {
     let number = Math.floor(Math.random() * deck.length);
     let card = deck.splice(number, 1);
 
-    return card;
+    return card[0];
 }
 
-function getCardImage () {
-    // images/{rank}_of_{suit}.png
-    // <img src="/page/images/5_of_hearts.png" alt="5 of hearts" />
+function getCardImage (card) {
+    let image = document.createElement("img");
+
+    if (card.rank === 1) {
+        image.src = `images/ace_of_${card.suit}.png`;
+        image.alt = `${card.rank} of ${card.suit}`;
+        return image;
+    } else if (card.rank === 11) {
+        image.src = `images/jack_of_${card.suit}.png`;
+        image.alt = `${card.rank} of ${card.suit}`;
+        return image;
+    } else if (card.rank === 12) {
+        image.src = `images/queen_of_${card.suit}.png`;
+        image.alt = `${card.rank} of ${card.suit}`;
+        return image;
+    } else if (card.rank === 13) {
+        image.src = `images/king_of_${card.suit}.png`;
+        image.alt = `${card.rank} of ${card.suit}`;
+        return image;
+    }
+
+    image.src = `images/${card.rank}_of_${card.suit}.png`;
+    image.alt = `${card.rank} of ${card.suit}`;
+    return image;
 }
